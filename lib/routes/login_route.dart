@@ -1,3 +1,4 @@
+import 'package:crfl/blocs/authentication/authentication_bloc.dart';
 import 'package:crfl/routes/home.dart';
 import 'package:crfl/routes/signup_route.dart';
 import 'package:crfl/services/login_service.dart';
@@ -37,8 +38,12 @@ class _LoginRouteState extends State<LoginRoute> {
       child: SafeArea(
         child: Scaffold(
           body: BlocProvider(
-            create: (context) =>
-                LoginBloc(RepositoryProvider.of<LoginService>(context)),
+            create: (context) => LoginBloc(
+              RepositoryProvider.of<LoginService>(context),
+              AuthenticationBloc(
+                RepositoryProvider.of<LoginService>(context),
+              ),
+            ),
             child: SingleChildScrollView(
               child: SizedBox(
                 height: height * 97 / 100,
