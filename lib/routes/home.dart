@@ -15,20 +15,22 @@ class _HomeRouteState extends State<HomeRoute> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static const List _widgetOptions = [
     CryptoPage(),
     UsersPage(),
     SettingsPage(),
   ];
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: Container(
-          height: 80,
+          height: height * 10 / 100,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
