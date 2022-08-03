@@ -1,4 +1,5 @@
 import 'package:crfl/blocs/crypto/crypto_bloc.dart';
+import 'package:crfl/routes/currency_detail.dart';
 import 'package:crfl/services/crypto_service.dart';
 import 'package:crfl/widgets/crypto_item.dart';
 import 'package:flutter/material.dart';
@@ -75,13 +76,19 @@ class CryptoPage extends StatelessWidget {
                                 const Divider(
                                   color: Colors.black,
                                 ),
-                                CryptoItem(
-                                  imagesrc: state.cryptoList[index].image,
-                                  cryptoName: state.cryptoList[index].name,
-                                  cryptoLastPrice:
-                                      state.cryptoList[index].currentPrice,
-                                  cryptochangePrice24: state.cryptoList[index]
-                                      .priceChangePercentage24H,
+                                GestureDetector(
+                                  onTap: () => Navigator.of(context)
+                                      .push(MaterialPageRoute(
+                                    builder: (context) => const CryptoDetail(),
+                                  )),
+                                  child: CryptoItem(
+                                    imagesrc: state.cryptoList[index].image,
+                                    cryptoName: state.cryptoList[index].name,
+                                    cryptoLastPrice:
+                                        state.cryptoList[index].currentPrice,
+                                    cryptochangePrice24: state.cryptoList[index]
+                                        .priceChangePercentage24H,
+                                  ),
                                 ),
                               ],
                             );
