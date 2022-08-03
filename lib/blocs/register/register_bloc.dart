@@ -19,6 +19,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         // ignore: avoid_print
         print(state);
       } catch (error) {
+        emit(RegisterLoadingState());
         emit(RegisterFailureState(error.toString()));
         // ignore: avoid_print
         print(state);

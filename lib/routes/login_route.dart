@@ -20,6 +20,8 @@ class _LoginRouteState extends State<LoginRoute> {
   final TextEditingController _passwordController = TextEditingController();
   bool myValue = false;
   bool secureText = true;
+  int times = 0;
+  int times_two = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -285,21 +287,38 @@ class _LoginRouteState extends State<LoginRoute> {
                       );
                     }
                     if (state is LoginSuccessState) {
+                      times_two++;
+                      if (times_two <= 1) {
+                        Future.delayed(
+                          Duration.zero,
+                          () async {
+                            const snackBar = SnackBar(
+                              content: Text('Login Success'),
+                              backgroundColor: Colors.greenAccent,
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
+                        );
+                      }
                       return const HomeRoute();
                     }
                     if (state is LoginFailureState) {
                       // ignore: deprecated_member_use
-                      Future.delayed(
-                        Duration.zero,
-                        () async {
-                          Scaffold.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Login failed."),
+                      times++;
+                      if (times <= 1) {
+                        Future.delayed(
+                          Duration.zero,
+                          () async {
+                            const snackBar = SnackBar(
+                              content: Text('Login Faild'),
                               backgroundColor: Colors.red,
-                            ),
-                          );
-                        },
-                      );
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
+                        );
+                      }
                     }
                     if (state is LoginLoadingState) {
                       return const Center(
