@@ -4,6 +4,7 @@ import 'package:crfl/routes/login_route.dart';
 import 'package:crfl/services/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           AuthenticationBloc(LoginService())..add(OnAppStartedEvent()),
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData.light(),
+        theme: ThemeData(),
+        darkTheme: ThemeData.dark(),
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             if (state is UserAuthenticatedState) {

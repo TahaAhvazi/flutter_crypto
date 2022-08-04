@@ -1,7 +1,7 @@
+import 'package:crfl/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -11,10 +11,40 @@ class SettingsPage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
-      child: Container(
+      child: SizedBox(
         height: height,
         width: width,
-        color: Colors.purple,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                const Text("Night Mode"),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.isDarkMode
+                        ? Get.changeTheme(ThemeData.light())
+                        : Get.changeTheme(ThemeData.dark());
+                  },
+                  child: const Text("Change"),
+                ),
+              ]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Log Out"),
+                  ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<AuthenticationBloc>()
+                            .add(OnUserLoggedOutEvent());
+                      },
+                      child: const Text('Logout'))
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
