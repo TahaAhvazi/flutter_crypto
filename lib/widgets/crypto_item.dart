@@ -20,65 +20,66 @@ class CryptoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      height: height * 10 / 100,
+    return SizedBox(
+      height: height * 12 / 100,
       width: width * 97 / 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.grey[200],
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Image.network(
-                      imagesrc,
-                      height: 50,
-                      width: 35,
-                    ),
-                    SizedBox(
-                      width: width * 1 / 100,
-                    ),
-                    Text(
-                      cryptoName.substring(0, 3),
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
+      child: Card(
+        elevation: 8,
+        shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide.none,
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.network(
+                        imagesrc,
+                        height: 50,
+                        width: 35,
                       ),
+                      SizedBox(
+                        width: width * 1 / 100,
+                      ),
+                      Text(
+                        cryptoName.substring(0, 3),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    '${cryptoLastPrice.toStringAsFixed(2)} \$',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
                     ),
-                  ],
-                ),
-                Text(
-                  '${cryptoLastPrice.toStringAsFixed(2)} \$',
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
                   ),
-                ),
-                SizedBox(
-                  width: width * 5 / 100,
-                ),
-                Text(
-                  '${cryptochangePrice24.toStringAsFixed(2)}%',
-                  style: TextStyle(
-                    color: cryptochangePrice24 < 0
-                        ? Colors.redAccent
-                        : const Color.fromARGB(255, 17, 189, 23),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                  SizedBox(
+                    width: width * 5 / 100,
                   ),
-                ),
-              ],
+                  Text(
+                    '${cryptochangePrice24.toStringAsFixed(2)}%',
+                    style: TextStyle(
+                      color: cryptochangePrice24 < 0
+                          ? Colors.redAccent
+                          : const Color.fromARGB(255, 17, 189, 23),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

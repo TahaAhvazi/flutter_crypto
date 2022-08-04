@@ -59,10 +59,11 @@ class Datum {
 }
 
 class GetUsersService {
-  Future<Users> getUserList([int startIndex = 0]) async {
+  Future<List<Datum>> getUserList([int startIndex = 0]) async {
     final response =
         await get(Uri.parse("https://reqres.in/api/users?delay=10"));
     final myUsers = usersFromJson(response.body);
-    return myUsers;
+    final result = myUsers.data;
+    return result;
   }
 }

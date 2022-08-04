@@ -32,7 +32,6 @@ class _HomeRouteState extends State<HomeRoute> {
         bottomNavigationBar: Container(
           height: height * 10 / 100,
           decoration: BoxDecoration(
-            color: Colors.white,
             boxShadow: [
               BoxShadow(
                 blurRadius: 20,
@@ -53,7 +52,7 @@ class _HomeRouteState extends State<HomeRoute> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 400),
-                tabBackgroundColor: Colors.grey[100]!,
+                tabBackgroundColor: const Color.fromARGB(255, 63, 63, 63),
                 color: Colors.black,
                 textStyle:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

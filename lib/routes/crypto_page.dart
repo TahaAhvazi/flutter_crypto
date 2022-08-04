@@ -30,7 +30,6 @@ class _CryptoPageState extends State<CryptoPage> {
           child: Container(
             height: height,
             width: width,
-            color: const Color.fromARGB(255, 255, 255, 255),
             child: BlocBuilder<CryptoBloc, CryptoState>(
               builder: (context, state) {
                 if (state is CryptoLoadingState) {
